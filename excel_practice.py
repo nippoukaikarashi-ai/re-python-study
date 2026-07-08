@@ -14,7 +14,7 @@ import os
 # =========================
 # 1. 入出金データ（例）
 # =========================
-df = pd.read_csv("reren.csv")
+df = pd.read_csv("ren.csv")
 
 # 日付を datetime に変換
 df["日付"] = pd.to_datetime(df["日付"])
@@ -34,7 +34,7 @@ if this_month_df.empty:
 # 入金/出金集計
 income_total = this_month_df.loc[this_month_df["区分"] == "入金", "金額"].sum()
 expense_total = this_month_df.loc[this_month_df["区分"] == "出金", "金額"].sum()
-balance = income_total - expense_total
+balance = income_total + expense_total
 
 
 # =========================
@@ -87,12 +87,11 @@ story.append(Paragraph(summary_text, normal_style))
 story.append(Spacer(1, 12))
 
 # 明細表用データ
-table_data = [["日付", "内容", "区分", "金額"]]
+table_data = [["日付", "区分", "金額"]]
 
 for _, row in this_month_df.iterrows():
     table_data.append([
         row["日付"].strftime("%Y-%m-%d"),
-        row["内容"],
         row["区分"],
         f"{row['金額']:,}"
     ])
@@ -112,7 +111,6 @@ story.append(table)
 doc.build(story)
 
 print(f"PDFファイルを作成しました: {pdf_file}")
-
 
 
 """
