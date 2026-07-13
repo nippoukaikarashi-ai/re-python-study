@@ -1,14 +1,11 @@
 import pandas as pd
 
-sum = 0
-
 df = pd.read_csv("apple.csv")
 
 print(df["価格"].sum())
 print(df.groupby("種類")["価格"].sum())
 print(df[df["価格"] >= 150])
 print(df.sort_values("価格", ascending=False))
-
 
 
 

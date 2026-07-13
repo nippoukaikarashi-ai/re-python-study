@@ -55,6 +55,7 @@ with pd.ExcelWriter(xlsx_file, engine="openpyxl") as writer:
 
 print(f"Excelファイルを作成しました: {xlsx_file}")
 
+
 # =========================
 # 3. PDF 出力
 # =========================
@@ -113,7 +114,6 @@ doc.build(story)
 print(f"PDFファイルを作成しました: {pdf_file}")
 
 
-"""
 # =========================
 # 4. メール送信
 # =========================
@@ -158,4 +158,3 @@ with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as smtp:
     smtp.send_message(msg)
 
 print("メール送信が完了しました。")
-"""
